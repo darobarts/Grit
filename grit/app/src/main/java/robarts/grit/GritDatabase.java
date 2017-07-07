@@ -55,7 +55,7 @@ public class GritDatabase extends SQLiteOpenHelper {
     private String makeInsertStatement(int number, boolean hasText, boolean hasAudio, String text, String audioFilename) {
         return "INSERT INTO " + TABLE_NAME + " (" +
                 DAY_COLUMN_NUMBER + "," + DAY_COLUMN_HASTEXT + "," + DAY_COLUMN_HASAUDIO + "," + DAY_COLUMN_TEXT + "," + DAY_COLUMN_AUDIO_FILENAME +") " +
-                "VALUES (" + number +"," + hasText+","+hasAudio+","+text+","+audioFilename+")";
+                "VALUES (" + number +"," + 1+","+0+","+text+","+audioFilename+")";
     }
 
     /**
@@ -86,12 +86,16 @@ public class GritDatabase extends SQLiteOpenHelper {
     public Day getDay(int dayNumber) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME, new String[]{DAY_COLUMN_NUMBER, DAY_COLUMN_HASTEXT, DAY_COLUMN_HASAUDIO, DAY_COLUMN_TEXT, DAY_COLUMN_AUDIO_FILENAME}, DAY_COLUMN_NUMBER + " = " + dayNumber, null, null, null, null, null);
-        cursor.moveToFirst();
-        int number = cursor.getInt(cursor.getColumnIndex(DAY_COLUMN_NUMBER));
-        String text = cursor.getString(cursor.getColumnIndex(DAY_COLUMN_TEXT));
-        String audioFilename = cursor.getString(cursor.getColumnIndex(DAY_COLUMN_AUDIO_FILENAME));
-        boolean hasText = cursor.getInt(cursor.getColumnIndex(DAY_COLUMN_HASTEXT)) == 1;
-        boolean hasAudio = cursor.getInt(cursor.getColumnIndex(DAY_COLUMN_HASAUDIO)) == 1;
-        return new Day(number, hasText, hasAudio, text, audioFilename);
+        Day day = null;
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int number = cursor.getInt(cursor.getColumnIndex(DAY_COLUMN_NUMBER));
+            String text = cursor.getString(cursor.getColumnIndex(DAY_COLUMN_TEXT));
+            String audioFilename = cursor.getString(cursor.getColumnIndex(DAY_COLUMN_AUDIO_FILENAME));
+            boolean hasText = cursor.getInt(cursor.getColumnIndex(DAY_COLUMN_HASTEXT)) == 1;
+            boolean hasAudio = cursor.getInt(cursor.getColumnIndex(DAY_COLUMN_HASAUDIO)) == 1;
+            day = new Day(number, hasText, hasAudio, text, audioFilename);
+        }
+        return day;
     }
 }
