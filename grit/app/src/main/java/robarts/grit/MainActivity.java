@@ -1,5 +1,7 @@
 package robarts.grit;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,7 +26,18 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        deployFragment(new StartFragment());
+        //get the current day the user is on or add day 1 (index 0) if user's first time
+        int day = 0;
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        day = sharedPref.getInt(GritDatabase.DAY_COLUMN_NUMBER, -1);
+        if (day == -1) {
+            sharedPref.edit().putInt(GritDatabase.DAY_COLUMN_NUMBER, 0).commit();
+            deployFragment(new StartFragment());
+        } else {
+            deployFragment(new DayFragment());
+        }
+
+
     }
 
     @Override
