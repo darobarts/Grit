@@ -8,9 +8,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/set_time_prompt"
         android:layout_margin="16dp"
         android:layout_centerHorizontal="true"
-        tools:text="@string/reminder_time_prompt"/>
+        android:text="@string/reminder_time_prompt"/>
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_picker"
+        android:layout_below="@+id/set_time_prompt"/>
 
     <Button
         android:layout_width="wrap_content"

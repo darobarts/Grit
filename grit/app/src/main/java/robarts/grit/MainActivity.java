@@ -41,7 +41,7 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
     }
 
     @Override
-    public void onDoneClicked() {
+    public void onDoneClicked(int hour, int minute) {
         deployFragment(new DayFragment());
     }
 
