@@ -28,7 +28,7 @@ public class DayFragment extends Fragment {
         final SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
         final int dayNumber = prefs.getInt(DayRetriever.DAY_KEY, -1);
         Day day = DayRetriever.getDay(dayNumber, getResources());
-        getActivity().setTitle("Day " + dayNumber);
+        getActivity().setTitle("Day " + (dayNumber + 1));
 
         //if could not find the assumed day in database
         if (day == null) {

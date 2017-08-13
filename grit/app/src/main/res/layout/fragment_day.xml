@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGrey">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/day_text"
-        android:layout_margin="8dp"
-        android:textAlignment="center"
-        android:visibility="gone"
-        tools:visibility="visible"
-        tools:text="List 5 reasons why you are using this app you fool"/>
+        android:layout_height="0dp"
+        android:layout_weight="9">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/day_audio_container"
-        android:text="TEMP AUDIO DISPLAY CHECK"
-        android:visibility="gone"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:textAlignment="center"
-        tools:visibility="visible"
-        tools:text="Design display check"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/day_text"
+            android:layout_margin="8dp"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="List 5 reasons why you are using this app"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/day_audio_container"
+            android:visibility="gone"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:textAlignment="center"
+            tools:visibility="visible"
+            tools:text="Design display check"/>
+
+    </RelativeLayout>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"
         android:id="@+id/day_finished_button"
         tools:text="Complete Day"
         android:text="@string/complete_day"/>
 
-</RelativeLayout>
+</LinearLayout>
