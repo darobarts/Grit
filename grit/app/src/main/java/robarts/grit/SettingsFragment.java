@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 /**
@@ -23,11 +24,13 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         getActivity().setTitle("Settings");
-        final TimePicker timePicker = (TimePicker)view.findViewById(R.id.time_picker);
+        final EditText hourText = (EditText) view.findViewById(R.id.hour_input);
+        final EditText minuteText = (EditText) view.findViewById(R.id.minute_input);
+
         view.findViewById(R.id.settings_done_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDoneClickListener.onDoneClicked(timePicker.getHour(), timePicker.getMinute());
+                onDoneClickListener.onDoneClicked(Integer.parseInt(hourText.getText().toString()), Integer.parseInt(minuteText.getText().toString()));
             }
         });
         return view;

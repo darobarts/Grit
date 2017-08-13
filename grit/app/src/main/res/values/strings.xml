@@ -4,6 +4,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="start">Start</string>
+    <string name="hour">Hour</string>
+    <string name="minute">Minute</string>
     <string name="complete_day">Complete Day</string>
     <string name="settings_start_text">Start Day one</string>
     <string name="reminder_time_prompt">Set the time for your daily reminder!</string>

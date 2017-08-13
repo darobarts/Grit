@@ -26,15 +26,14 @@ public class DayFragment extends Fragment {
 
 
         final SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-        final int dayNumber = prefs.getInt(GritDatabase.DAY_COLUMN_NUMBER, -1);
-        GritDatabase db = new GritDatabase(getContext());
-        Day day = db.getDay(dayNumber);
+        final int dayNumber = prefs.getInt(DayRetriever.DAY_KEY, -1);
+        Day day = DayRetriever.getDay(dayNumber, getResources());
         getActivity().setTitle("Day " + dayNumber);
 
         //if could not find the assumed day in database
         if (day == null) {
             //reset to beginning of day count
-            prefs.edit().putInt(GritDatabase.DAY_COLUMN_NUMBER, 0).commit();
+            prefs.edit().putInt(DayRetriever.DAY_KEY, 0).commit();
         } else {
             if (day.hasText) {
                 //set and display text on day screen
@@ -50,7 +49,7 @@ public class DayFragment extends Fragment {
             view.findViewById(R.id.day_finished_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    prefs.edit().putInt(GritDatabase.DAY_COLUMN_NUMBER, dayNumber + 1).commit();
+                    prefs.edit().putInt(DayRetriever.DAY_KEY, dayNumber + 1).commit();
                     onDayFinishListener.dayFinished();
                 }
             });

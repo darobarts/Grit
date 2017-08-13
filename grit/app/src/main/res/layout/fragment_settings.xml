@@ -13,11 +13,41 @@
         android:layout_centerHorizontal="true"
         android:text="@string/reminder_time_prompt"/>
 
-    <TimePicker
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/time_picker"
-        android:layout_below="@+id/set_time_prompt"/>
+        android:id="@+id/hour_input_prompt"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/set_time_prompt"
+        android:text="@string/hour"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hour_input"
+        android:inputType="number"
+        android:maxLength="2"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/hour"
+        android:layout_below="@+id/hour_input_prompt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/minute_input_prompt"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/hour_input"
+        android:text="@string/minute"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/minute_input"
+        android:inputType="number"
+        android:maxLength="2"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/minute"
+        android:layout_below="@+id/minute_input_prompt" />
 
     <Button
         android:layout_width="wrap_content"

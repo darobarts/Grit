@@ -29,9 +29,8 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
         //get the current day the user is on or add day 1 (index 0) if user's first time
         int day = 0;
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        day = sharedPref.getInt(GritDatabase.DAY_COLUMN_NUMBER, -1);
+        day = sharedPref.getInt(DayRetriever.DAY_KEY, -1);
         if (day == -1) {
-            sharedPref.edit().putInt(GritDatabase.DAY_COLUMN_NUMBER, 0).commit();
             deployFragment(new StartFragment());
         } else {
             deployFragment(new DayFragment());
@@ -42,6 +41,7 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
 
     @Override
     public void onDoneClicked(int hour, int minute) {
+        this.getPreferences(Context.MODE_PRIVATE).edit().putInt(DayRetriever.DAY_KEY, 0).commit();
         deployFragment(new DayFragment());
     }
 
