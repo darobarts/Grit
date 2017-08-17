@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightGrey">
 
@@ -13,41 +14,49 @@
         android:layout_centerHorizontal="true"
         android:text="@string/reminder_time_prompt"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/hour_input_prompt"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_below="@+id/set_time_prompt"
-        android:text="@string/hour"/>
+        android:orientation="horizontal">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/hour_input"
-        android:inputType="number"
-        android:maxLength="2"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/hour"
-        android:layout_below="@+id/hour_input_prompt" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/hour_input"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="@string/hour" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/minute_input_prompt"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/hour_input"
-        android:text="@string/minute"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/colon"
+            android:text="@string/colon" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/minute_input"
-        android:inputType="number"
-        android:maxLength="2"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/minute"
-        android:layout_below="@+id/minute_input_prompt" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/minute_input"
+            android:inputType="number"
+            android:maxLength="2"
+            android:hint="@string/minute" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/am_pm"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -59,6 +68,5 @@
         android:textColor="@android:color/white"
         android:id="@+id/settings_done_button"
         android:text="@string/settings_start_text"/>
-
 
 </RelativeLayout>

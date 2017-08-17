@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.TimePicker;
 
 /**
@@ -26,6 +27,11 @@ public class SettingsFragment extends Fragment {
         getActivity().setTitle("Settings");
         final EditText hourText = (EditText) view.findViewById(R.id.hour_input);
         final EditText minuteText = (EditText) view.findViewById(R.id.minute_input);
+        //set up display for AM/PM
+        NumberPicker timeFramePicker = (NumberPicker) view.findViewById(R.id.am_pm);
+        timeFramePicker.setMinValue(0);
+        timeFramePicker.setMaxValue(1);
+        timeFramePicker.setDisplayedValues(new String[]{"AM", "PM"});
 
         view.findViewById(R.id.settings_done_button).setOnClickListener(new View.OnClickListener() {
             @Override
