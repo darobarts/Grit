@@ -26,7 +26,7 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         getActivity().setTitle("Settings");
         //set up display for AM/PM
-        NumberPicker timeFramePicker = (NumberPicker) view.findViewById(R.id.am_pm);
+        final NumberPicker timeFramePicker = (NumberPicker) view.findViewById(R.id.am_pm);
         final NumberPicker hourPicker = (NumberPicker) view.findViewById(R.id.hour);
         hourPicker.setMinValue(1);
         hourPicker.setMaxValue(12);
@@ -46,7 +46,12 @@ public class SettingsFragment extends Fragment {
         view.findViewById(R.id.settings_done_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDoneClickListener.onDoneClicked(hourPicker.getValue(), minutePicker.getValue());
+                int hour = hourPicker.getValue();
+                int minute = minutePicker.getValue();
+                if (timeFramePicker.getValue() == 1) {
+                    hour += 12;
+                }
+                onDoneClickListener.onDoneClicked(hour, minute);
             }
         });
         return view;

@@ -3,6 +3,7 @@ package robarts.grit;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements StartFragment.OnStartClickListener,
 SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
 
+    private static final String HOUR_KEY = "hour";
+    private static final String MINUTE_KEY = "minute";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +39,17 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
         } else {
             deployFragment(new DayFragment());
         }
-
-
     }
 
     @Override
     public void onDoneClicked(int hour, int minute) {
-        this.getPreferences(Context.MODE_PRIVATE).edit().putInt(DayRetriever.DAY_KEY, 0).commit();
+        SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
+        //set first day ready
+        sharedPreferences.edit().putInt(DayRetriever.DAY_KEY, 0).commit();
+        //set time of notifications
+        sharedPreferences.edit().putInt(HOUR_KEY, hour).apply();
+        sharedPreferences.edit().putInt(MINUTE_KEY, hour).apply();
+        //create notification
         deployFragment(new DayFragment());
     }
 
