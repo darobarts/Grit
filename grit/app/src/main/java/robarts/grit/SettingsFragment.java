@@ -25,10 +25,20 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         getActivity().setTitle("Settings");
-        final EditText hourText = (EditText) view.findViewById(R.id.hour_input);
-        final EditText minuteText = (EditText) view.findViewById(R.id.minute_input);
         //set up display for AM/PM
         NumberPicker timeFramePicker = (NumberPicker) view.findViewById(R.id.am_pm);
+        final NumberPicker hourPicker = (NumberPicker) view.findViewById(R.id.hour);
+        hourPicker.setMinValue(1);
+        hourPicker.setMaxValue(12);
+        final NumberPicker minutePicker = (NumberPicker) view.findViewById(R.id.minute);
+        minutePicker.setMinValue(0);
+        minutePicker.setMaxValue(59);
+        minutePicker.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int value) {
+                return String.format("%02d", value);
+            }
+        });
         timeFramePicker.setMinValue(0);
         timeFramePicker.setMaxValue(1);
         timeFramePicker.setDisplayedValues(new String[]{"AM", "PM"});
@@ -36,7 +46,7 @@ public class SettingsFragment extends Fragment {
         view.findViewById(R.id.settings_done_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDoneClickListener.onDoneClicked(Integer.parseInt(hourText.getText().toString()), Integer.parseInt(minuteText.getText().toString()));
+                onDoneClickListener.onDoneClicked(hourPicker.getValue(), minutePicker.getValue());
             }
         });
         return view;

@@ -22,15 +22,11 @@
         android:layout_below="@+id/set_time_prompt"
         android:orientation="horizontal">
 
-        <EditText
+        <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/hour_input"
-            android:inputType="number"
-            android:maxLength="2"
-            android:hint="@string/hour" />
+            android:id="@+id/hour"
+            android:layout_margin="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,15 +36,11 @@
             android:id="@+id/colon"
             android:text="@string/colon" />
 
-        <EditText
+        <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/minute_input"
-            android:inputType="number"
-            android:maxLength="2"
-            android:hint="@string/minute" />
+            android:id="@+id/minute"
+            android:layout_margin="10dp"/>
 
         <NumberPicker
             android:layout_width="wrap_content"
