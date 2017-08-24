@@ -1,6 +1,9 @@
 package robarts.grit;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -50,6 +53,12 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
         sharedPreferences.edit().putInt(HOUR_KEY, hour).apply();
         sharedPreferences.edit().putInt(MINUTE_KEY, hour).apply();
         //create notification
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        Intent intent = new Intent(this, DailyNotification.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+
         deployFragment(new DayFragment());
     }
 
