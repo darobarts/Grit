@@ -37,6 +37,7 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
         int day = 0;
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         day = sharedPref.getInt(DayRetriever.DAY_KEY, -1);
+        //if day has not been set previously dont display a day
         if (day == -1) {
             deployFragment(new StartFragment());
         } else {
@@ -69,7 +70,7 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
 
     @Override
     public void dayFinished() {
-        Toast.makeText(this, "CONGRATS ON COMPLETING DAY", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.end_day_notification), Toast.LENGTH_SHORT).show();
     }
 
     private void deployFragment(Fragment fragment) {
