@@ -22,7 +22,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements StartFragment.OnStartClickListener,
-SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
+TimeSetListener, DayFragment.OnDayFinishListener {
 
     private static final String HOUR_KEY = "hour";
     private static final String MINUTE_KEY = "minute";
@@ -46,7 +46,7 @@ SettingsFragment.OnDoneClickListener, DayFragment.OnDayFinishListener {
     }
 
     @Override
-    public void onDoneClicked(int hour, int minute) {
+    public void onTimeSet(int hour, int minute) {
         SharedPreferences sharedPreferences = this.getPreferences(Context.MODE_PRIVATE);
         //set first day ready
         sharedPreferences.edit().putInt(DayRetriever.DAY_KEY, 0).commit();
