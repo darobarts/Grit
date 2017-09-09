@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 
 /**
  * Created by austinrobarts on 8/23/17.
@@ -14,20 +13,18 @@ import android.os.Handler;
 
 public class DailyNotification extends BroadcastReceiver {
 
-    public static String NOTIFICATION_ID = "notification_id";
-    public static String NOTIFICATION = "notification";
-
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 
+        Intent notificatonIntent = new Intent(context, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificatonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = new Notification.Builder(context)
-                .setSmallIcon(R.drawable.ic_menu_send)
-                .setContentTitle("test")
-                .setContentIntent(PendingIntent.getBroadcast(context, 0, new Intent(context, MainActivity.class), 0))
-                .setContentText("Boom pow")
+                .setSmallIcon(R.drawable.ic_timer_black_24dp)
+                .setContentTitle("Grit")
+                .setContentIntent(contentIntent)
+                .setContentText("Your next step is ready to go!")
                 .build();
-        int id = intent.getIntExtra(NOTIFICATION_ID, 0);
-        notificationManager.notify(id, notification);
+        notificationManager.notify(0, notification);
     }
 }

@@ -30,10 +30,12 @@ public class TimePickerLayout extends LinearLayout {
     }
 
     public void setMinute(int minute) {
-        minutePicker.setValue(minute);
+        if (minute > MIN_MINUTE && minute < MAX_MINUTE)
+            minutePicker.setValue(minute);
     }
 
     public void setMilitaryHour(int hour) {
+        if (hour > MIN_HOUR && hour < MAX_HOUR * 2)
         hourPicker.setValue(hour);
     }
 
