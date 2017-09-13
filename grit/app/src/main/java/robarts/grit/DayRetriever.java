@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class DayRetriever {
 
     public static final String DAY_KEY = "day";
-
+    public static final int NUM_DAYS = 30;
     /**
      * Gets the day corresponding to the day number
      * @param dayNumber number of day to get. Starting at 1

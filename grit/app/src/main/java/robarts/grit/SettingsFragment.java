@@ -2,10 +2,13 @@ package robarts.grit;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import static robarts.grit.MainActivity.PREF_NAME;
 
 /**
  * Created by austinrobarts on 7/5/17.
@@ -23,6 +26,8 @@ public class SettingsFragment extends Fragment {
         view.findViewById(R.id.settings_done_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //set for day 1 ready
+                getActivity().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putInt(DayRetriever.DAY_KEY, 0).apply();
                 int hour = timePicker.getMilitaryHour();
                 int minute = timePicker.getMinute();
                 timeSetListener.onTimeSet(hour, minute);

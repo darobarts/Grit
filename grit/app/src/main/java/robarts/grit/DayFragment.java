@@ -30,8 +30,8 @@ public class DayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
 
         setHasOptionsMenu(true);
-        final SharedPreferences prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-        final int dayNumber = prefs.getInt(DayRetriever.DAY_KEY, -1);
+        final SharedPreferences prefs = getActivity().getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
+        final int dayNumber = prefs.getInt(DayRetriever.DAY_KEY, MainActivity.DAY_NOT_FOUND);
         Day day = DayRetriever.getDay(dayNumber, getResources());
         getActivity().setTitle("Day " + (dayNumber + 1));
 
@@ -56,7 +56,6 @@ public class DayFragment extends Fragment {
         view.findViewById(R.id.day_finished_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prefs.edit().putInt(DayRetriever.DAY_KEY, dayNumber + 1).apply();
                 onDayFinishListener.dayFinished();
             }
         });
